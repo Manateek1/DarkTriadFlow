@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Triad Flow | Tasks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-page="tasks">
+  <div class="noise"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="shell topbar">
+    <a href="./index.html" class="topbar-brand">
+      <img src="./logo.svg" alt="" class="brand-mark">
+      <span>Dark Triad Flow</span>
+    </a>
+
+    <nav class="page-nav" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./calendar.html">Calendar</a>
+      <a href="./tasks.html" class="active">Tasks</a>
+      <a href="./notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="shell page-shell">
+    <section class="hero panel page-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Tasks</p>
+        <h1>Board and capture</h1>
+        <p class="hero-text">
+          Add work, convert a quick dump into structured tasks, and rank the best next moves without the weekly
+          calendar dominating the screen.
+        </p>
+      </div>
+
+      <div class="hero-controls">
+        <label class="control-card">
+          <span>Selected day</span>
+          <input id="selectedDateInput" type="date">
+        </label>
+
+        <label class="control-card">
+          <span>Capacity for that day</span>
+          <div class="range-row">
+            <input id="minutesAvailable" type="range" min="30" max="540" step="15" value="180">
+            <strong id="minutesAvailableValue">180 min</strong>
+          </div>
+        </label>
+
+        <div class="control-grid">
+          <label class="control-card">
+            <span>Energy level</span>
+            <select id="energyLevel">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span>Mode</span>
+            <select id="planningMode">
+              <option value="balanced" selected>Balanced</option>
+              <option value="deadline">Deadline rescue</option>
+              <option value="focus">Focus block</option>
+              <option value="recovery">Recovery day</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="hero-actions">
+          <button id="todayBtn" type="button" class="secondary">Jump to Today</button>
+          <button id="loadSampleBtn" type="button">Load Sample Data</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="triad-overview" id="overviewCards"></section>
+
+    <section class="workspace">
+      <aside class="panel composer">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Add Task</p>
+            <h2>Feed the system</h2>
+          </div>
+        </div>
+
+        <form id="taskForm" class="task-form">
+          <label>
+            <span>Task title</span>
+            <input id="taskTitle" name="taskTitle" type="text" maxlength="120" placeholder="Finalize travel reimbursement">
+          </label>
+
+          <label>
+            <span>Notes</span>
+            <textarea id="taskNotes" name="taskNotes" rows="3" maxlength="280" placeholder="Add any context that matters later"></textarea>
+          </label>
+
+          <div class="field-grid">
+            <label>
+              <span>Category</span>
+              <select id="taskCategory" name="taskCategory">
+                <option value="Work">Work</option>
+                <option value="Life admin">Life admin</option>
+                <option value="Health">Health</option>
+                <option value="Home">Home</option>
+                <option value="Money">Money</option>
+                <option value="Learning">Learning</option>
+                <option value="Personal">Personal</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Minutes</span>
+              <input id="taskDuration" name="taskDuration" type="number" min="5" max="480" step="5" value="30">
+            </label>
+
+            <label>
+              <span>Impact</span>
+              <select id="taskImpact" name="taskImpact">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Effort</span>
+              <select id="taskEffort" name="taskEffort">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Energy needed</span>
+              <select id="taskEnergy" name="taskEnergy">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Due date</span>
+              <input id="taskDueDate" name="taskDueDate" type="date">
+            </label>
+
+            <label>
+              <span>Scheduled day</span>
+              <input id="taskScheduledDate" name="taskScheduledDate" type="date">
+            </label>
+          </div>
+
+          <button type="submit" class="full-width">Add to Flow</button>
+        </form>
+
+        <div class="brain-dump panel-block">
+          <div class="panel-header compact">
+            <div>
+              <p class="eyebrow">Fast Capture</p>
+              <h3>Quick drop</h3>
+            </div>
+          </div>
+
+          <p class="helper-text">One line per task. New items will default onto the currently selected day.</p>
+          <textarea id="brainDumpInput" rows="6" placeholder="send contractor invoice&#10;book dentist&#10;outline launch post"></textarea>
+          <button id="brainDumpBtn" type="button" class="secondary full-width">Convert Lines Into Tasks</button>
+        </div>
+      </aside>
+
+      <section class="main-column">
+        <article class="panel triad-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Priority Engine</p>
+              <h2>Best next moves</h2>
+            </div>
+            <p id="planNarrative" class="panel-summary"></p>
+          </div>
+          <div id="priorityStack" class="stack-list empty-state">No active tasks to rank yet.</div>
+        </article>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Task Board</p>
+              <h2>Everything in motion</h2>
+            </div>
+            <div class="list-actions">
+              <button id="clearDoneBtn" type="button" class="secondary small">Clear Completed</button>
+              <button id="clearAllBtn" type="button" class="ghost small">Clear All</button>
+            </div>
+          </div>
+
+          <div id="taskList" class="task-list empty-state">
+            Your board is empty. Add a task, drop a quick brain dump, or load the sample data.
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <template id="taskItemTemplate">
+    <article class="task-item">
+      <div class="task-main">
+        <div class="task-topline">
+          <label class="checkbox-wrap">
+            <input type="checkbox" class="task-toggle">
+            <span class="checkbox-ui"></span>
+          </label>
+          <div class="task-copy">
+            <div class="task-title-row">
+              <h3 class="task-title"></h3>
+              <span class="task-score"></span>
+            </div>
+            <p class="task-notes"></p>
+          </div>
+        </div>
+        <div class="task-meta"></div>
+      </div>
+      <div class="task-actions">
+        <button type="button" class="secondary small schedule-task">Send to Selected Day</button>
+        <button type="button" class="ghost small unschedule-task">Clear Slot</button>
+        <button type="button" class="ghost small delete-task">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>

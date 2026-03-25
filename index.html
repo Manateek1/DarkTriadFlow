@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Triad Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-page="home">
+  <div class="noise"></div>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+
+  <header class="shell topbar">
+    <a href="./index.html" class="topbar-brand">
+      <img src="./logo.svg" alt="" class="brand-mark">
+      <span>Dark Triad Flow</span>
+    </a>
+
+    <nav class="page-nav" aria-label="Primary">
+      <a href="./index.html" class="active">Home</a>
+      <a href="./calendar.html">Calendar</a>
+      <a href="./tasks.html">Tasks</a>
+      <a href="./notes.html">Notes</a>
+    </nav>
+  </header>
+
+  <main class="shell page-shell">
+    <section class="hero panel page-hero">
+      <div class="hero-copy">
+        <div class="brand-lockup">
+          <div class="logo-card" aria-label="Dark Triad Flow logo">
+            <img src="./logo.svg" alt="Dark Triad Flow triangle logo" class="brand-logo">
+          </div>
+          <div class="brand-copy">
+            <p class="eyebrow">Mission Control</p>
+            <p class="brand-tag">Three separate rooms. One shared brain.</p>
+          </div>
+        </div>
+        <p class="eyebrow">Calendar. Tasks. Notes.</p>
+        <h1>Dark Triad Flow</h1>
+        <p class="hero-text">
+          Move through the system by function instead of stacking everything on one page. Each area now has its own
+          dedicated view while keeping the same local storage, scheduling, and note memory underneath.
+        </p>
+        <div class="hero-link-row">
+          <a href="./calendar.html" class="action-link">Open Calendar</a>
+          <a href="./tasks.html" class="action-link secondary-link">Open Tasks</a>
+          <a href="./notes.html" class="action-link ghost-link">Open Notes</a>
+        </div>
+      </div>
+
+      <div class="hero-controls">
+        <label class="control-card">
+          <span>Selected day</span>
+          <input id="selectedDateInput" type="date">
+        </label>
+
+        <label class="control-card">
+          <span>Capacity for that day</span>
+          <div class="range-row">
+            <input id="minutesAvailable" type="range" min="30" max="540" step="15" value="180">
+            <strong id="minutesAvailableValue">180 min</strong>
+          </div>
+        </label>
+
+        <div class="control-grid">
+          <label class="control-card">
+            <span>Energy level</span>
+            <select id="energyLevel">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </label>
+
+          <label class="control-card">
+            <span>Mode</span>
+            <select id="planningMode">
+              <option value="balanced" selected>Balanced</option>
+              <option value="deadline">Deadline rescue</option>
+              <option value="focus">Focus block</option>
+              <option value="recovery">Recovery day</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="hero-actions">
+          <button id="todayBtn" type="button" class="secondary">Jump to Today</button>
+          <button id="loadSampleBtn" type="button">Load Sample Data</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="triad-overview" id="overviewCards"></section>
+
+    <section class="home-grid">
+      <article class="panel triad-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Today Slot</p>
+            <h2 id="selectedDayHeading">Selected day</h2>
+          </div>
+          <p id="selectedDaySummary" class="panel-summary"></p>
+        </div>
+        <div id="selectedDaySchedule" class="stack-list empty-state">No tasks scheduled for this day yet.</div>
+      </article>
+
+      <article class="panel triad-panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Priority Engine</p>
+            <h2>Best next moves</h2>
+          </div>
+          <p id="planNarrative" class="panel-summary"></p>
+        </div>
+        <div id="priorityStack" class="stack-list empty-state">No active tasks to rank yet.</div>
+      </article>
+    </section>
+
+    <section class="section-links">
+      <a href="./calendar.html" class="panel section-link-card">
+        <p class="eyebrow">Calendar</p>
+        <h2>Week orbit</h2>
+        <p class="helper-text">Navigate the week, inspect load, and jump between days.</p>
+      </a>
+
+      <a href="./tasks.html" class="panel section-link-card">
+        <p class="eyebrow">Tasks</p>
+        <h2>Board and capture</h2>
+        <p class="helper-text">Create tasks, brain-dump lines, rank next moves, and clear completed work.</p>
+      </a>
+
+      <a href="./notes.html" class="panel section-link-card">
+        <p class="eyebrow">Notes</p>
+        <h2>Day memory</h2>
+        <p class="helper-text">Write notes per selected date and keep task context nearby.</p>
+      </a>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
