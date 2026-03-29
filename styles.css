@@ -164,13 +164,11 @@ input[type="range"] {
 }
 
 .brand-mark {
+  display: block;
+  flex-shrink: 0;
   width: 52px;
   height: 52px;
-  border-radius: 14px;
   object-fit: contain;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(3, 5, 12, 0.88);
-  box-shadow: 0 16px 28px rgba(3, 5, 12, 0.4);
 }
 
 .page-nav {
@@ -229,12 +227,7 @@ input[type="range"] {
 .logo-card {
   width: 176px;
   height: 176px;
-  padding: 0.4rem;
   flex-shrink: 0;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(180deg, rgba(6, 8, 16, 0.98), rgba(1, 3, 8, 1));
-  box-shadow: 0 20px 40px rgba(3, 5, 12, 0.54);
 }
 
 .brand-logo {
@@ -242,7 +235,6 @@ input[type="range"] {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 12px;
 }
 
 .brand-copy {
